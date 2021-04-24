@@ -47,7 +47,7 @@ code {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  min-height: 23.6rem;
+  height: 23.6rem;
 }
 .task-container .task {
   background: #fff;
