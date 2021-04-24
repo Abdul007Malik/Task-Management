@@ -17,12 +17,12 @@ const TaskContainer = ({
       </div>
       <div className="list">
         {tasks.map((_) => {
-          if (searchText && !taskById[_]?.name?.includes?.(searchText))
+          if (searchText && !taskById?.[_]?.name?.includes?.(searchText))
             return "";
           return (
             <Task
               key={_}
-              {...taskById[_]}
+              {...taskById?.[_]}
               onDelete={() => typeof onDelete === "function" && onDelete(_)}
               onStatusChange={(e) =>
                 typeof onStatusChange === "function" &&

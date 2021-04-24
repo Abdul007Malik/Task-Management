@@ -98,6 +98,16 @@ function App() {
   };
 
   useEffect(() => {
+    if (!Object.keys(tasks || {}).length) {
+      setTasks({
+        byId: {},
+        byStatus: {
+          [TASK_STATUS.TODO]: [],
+          [TASK_STATUS.INPROGRESS]: [],
+          [TASK_STATUS.COMPLETED]: [],
+        },
+      });
+    }
     if (tasks) localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
@@ -124,24 +134,24 @@ function App() {
         <TaskContainer
           searchText={search}
           type="TO DO"
-          tasks={tasks.byStatus[TASK_STATUS.TODO] || []}
-          taskById={tasks.byId}
+          tasks={tasks?.byStatus?.[TASK_STATUS.TODO] || []}
+          taskById={tasks?.byId || {}}
           onDelete={onDelete}
           onStatusChange={onStatusChange}
         ></TaskContainer>
         <TaskContainer
           searchText={search}
           type="IN PROGRESS"
-          tasks={tasks.byStatus[TASK_STATUS.INPROGRESS] || []}
-          taskById={tasks.byId}
+          tasks={tasks?.byStatus?.[TASK_STATUS.INPROGRESS] || []}
+          taskById={tasks?.byId || {}}
           onDelete={onDelete}
           onStatusChange={onStatusChange}
         ></TaskContainer>
         <TaskContainer
           searchText={search}
           type="COMPLETE"
-          tasks={tasks.byStatus[TASK_STATUS.COMPLETED] || []}
-          taskById={tasks.byId}
+          tasks={tasks?.byStatus?.[TASK_STATUS.COMPLETED] || []}
+          taskById={tasks?.byId || {}}
           onDelete={onDelete}
           onStatusChange={onStatusChange}
         ></TaskContainer>
