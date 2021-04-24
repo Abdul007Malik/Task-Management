@@ -1,21 +1,27 @@
 import React from "react";
 import { TASK_STATUS } from "../shared/constants";
 
-const Task = ({ name, onDelete, value, onStatusChange }) => {
+const Task = ({ id, name, onDelete, status, onStatusChange }) => {
   return (
-    <div className="task">
-      <span className="name">{name}</span>
-      <div className="action">
-        <button type="button" onClick={onDelete}>
-          Delete
-        </button>
+    <div className="task" task-id={id}>
+      <div className="row1">
+        <span className="task-title">{name}</span>
+        <div className="action">
+          <button type="button" onClick={onDelete}>
+            Delete
+          </button>
+        </div>
       </div>
-      <div className="status">
-        <select onChange={onStatusChange} value={value}>
-          {TASK_STATUS.map((_) => (
-            <option key={_.id}>{_.name}</option>
-          ))}
-        </select>
+      <div className="row2">
+        <div className="status">
+          <select onChange={onStatusChange} value={status}>
+            {TASK_STATUS.all().map((_) => (
+              <option key={_.id} value={_.id}>
+                {_.name}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );

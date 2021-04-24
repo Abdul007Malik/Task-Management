@@ -1,13 +1,69 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.App.container {
+  margin-left: 15rem;
+}
+.task-containers {
+  display: flex;
+  flex-wrap: wrap;
+}
+.container .form {
+  display: flex;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+.container .form button {
+  margin-left: 1rem;
+}
+.container .form select {
+  margin-left: 0.2rem;
+}
+
+.task-container {
+  background: #cecece;
+  border-radius: 2%;
+  margin: 0 1rem;
+  min-width: 17rem;
+  height: 25rem;
+}
+.task-container .title {
+  text-align: left;
+  margin-left: 1rem;
+  color: #5f5b5b;
+}
+.task-container .list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  min-height: 23.6rem;
+}
+.task-container .task {
+  background: #fff;
+  margin: 1rem 0.2rem;
+  border-radius: 2%;
+  min-height: 5rem;
+}
+.task-container .task .row1,
+.task-container .task .row2 {
+  display: flex;
+  justify-content: space-between;
+}
+.task-container .task .row2{
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+.task-container .task .row1 .action {
+  float: right;
 }
