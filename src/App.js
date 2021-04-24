@@ -20,7 +20,8 @@ function App() {
       },
     };
   }
-  const [tasks, setTasks] = useState(storedObject);
+  const [tasks, setTasks] = useState(storedObject),
+    [search, setSearch] = useState("");
 
   const onDelete = (id) => {
     if (!tasks.byId[id]) return alert("Task not found");
@@ -92,12 +93,19 @@ function App() {
     setTasks(newTasks);
   };
 
+  const onSearch = (e) => {
+    setSearch(e?.target?.value);
+  };
+
   useEffect(() => {
     if (tasks) localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
 
   return (
     <div className="App container">
+      <div className="search-container">
+        <input name="search" onKeyDown={onSearch} placeholder="Filter Issues" />
+      </div>
       <div className="form">
         <form id="task_form" onSubmit={onSubmit}>
           <input name="task_name" />
@@ -114,6 +122,7 @@ function App() {
       </div>
       <div className="task-containers">
         <TaskContainer
+          searchText={search}
           type="TO DO"
           tasks={tasks.byStatus[TASK_STATUS.TODO] || []}
           taskById={tasks.byId}
@@ -121,6 +130,7 @@ function App() {
           onStatusChange={onStatusChange}
         ></TaskContainer>
         <TaskContainer
+          searchText={search}
           type="IN PROGRESS"
           tasks={tasks.byStatus[TASK_STATUS.INPROGRESS] || []}
           taskById={tasks.byId}
@@ -128,6 +138,7 @@ function App() {
           onStatusChange={onStatusChange}
         ></TaskContainer>
         <TaskContainer
+          searchText={search}
           type="COMPLETE"
           tasks={tasks.byStatus[TASK_STATUS.COMPLETED] || []}
           taskById={tasks.byId}
